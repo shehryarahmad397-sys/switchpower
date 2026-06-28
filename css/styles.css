@@ -147,8 +147,20 @@ a:hover {
   margin-top: 2px;
 }
 
-.logo span {
+.logo__name {
+  display: inline;
+}
+
+.logo__name span {
   color: var(--brand);
+}
+
+html[lang="ar"] .logo {
+  letter-spacing: 0;
+}
+
+html[lang="ar"] .logo small {
+  letter-spacing: 0.06em;
 }
 
 .logo:hover {
@@ -189,8 +201,12 @@ a:hover {
   box-shadow: 0 4px 16px rgba(0, 87, 183, 0.3);
 }
 
-.header-spacer {
+.header-actions {
   justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
 }
 
 .btn-whatsapp {
@@ -414,8 +430,17 @@ a:hover {
   }
 
   .nav-desktop,
-  .header-spacer .btn-whatsapp {
+  .header-actions .btn-whatsapp {
     display: none;
+  }
+
+  .header-actions {
+    gap: 0.45rem;
+  }
+
+  .lang-switch__btn {
+    padding: 0.35rem 0.55rem;
+    font-size: 0.72rem;
   }
 
   .menu-toggle {
@@ -429,6 +454,7 @@ a:hover {
     align-self: center;
     min-width: 0;
     margin: 0;
+    flex: 1;
   }
 
   .nav-overlay {
@@ -1116,6 +1142,7 @@ figure.spotlight-slide,
   mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
   padding-bottom: 0.5rem;
+  direction: ltr;
 }
 
 .marquee-track {
@@ -1123,6 +1150,7 @@ figure.spotlight-slide,
   gap: 0.65rem;
   width: max-content;
   animation: marquee 44s linear infinite;
+  direction: ltr;
 }
 
 .marquee-track:hover {
@@ -2393,4 +2421,145 @@ figure.spotlight-slide,
   .contact-page-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Language switcher */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.2rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-soft);
+}
+
+.lang-switch__btn {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.42rem 0.72rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.lang-switch__btn.is-active {
+  background: var(--brand);
+  color: #fff;
+}
+
+.lang-switch__btn:hover:not(.is-active) {
+  color: var(--navy);
+}
+
+/* RTL / Arabic typography */
+html[lang="ar"] body,
+html[dir="rtl"] body {
+  font-family: "Tajawal", var(--font-body);
+}
+
+html[lang="ar"] .section-title,
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] h4,
+html[dir="rtl"] .section-title,
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4 {
+  font-family: "Tajawal", var(--font-display);
+  letter-spacing: 0;
+}
+
+html[dir="rtl"] .eyebrow {
+  letter-spacing: 0.06em;
+}
+
+html[dir="rtl"] .eyebrow::before {
+  order: 1;
+}
+
+html[dir="rtl"] .about-checklist li {
+  padding-left: 0;
+  padding-right: 1.75rem;
+}
+
+html[dir="rtl"] .about-checklist li::before {
+  left: auto;
+  right: 0;
+}
+
+html[dir="rtl"] .product-pill {
+  left: auto;
+  right: 0.75rem;
+}
+
+html[dir="rtl"] .spotlight-nav--prev {
+  left: auto;
+  right: 0.5rem;
+}
+
+html[dir="rtl"] .spotlight-nav--next {
+  right: auto;
+  left: 0.5rem;
+}
+
+html[dir="rtl"] .spotlight-nav--prev svg,
+html[dir="rtl"] .spotlight-nav--next svg {
+  transform: scaleX(-1);
+}
+
+html[dir="rtl"] .nav-sidebar {
+  right: auto;
+  left: 0;
+  transform: translateX(-100%);
+  border-left: none;
+  border-right: 1px solid var(--line);
+  box-shadow: 16px 0 60px rgba(3, 7, 18, 0.18);
+}
+
+html[dir="rtl"] .nav-sidebar.is-open {
+  transform: translateX(0);
+}
+
+html[dir="rtl"] .touch-map__pin {
+  left: auto;
+  right: 1rem;
+}
+
+html[dir="rtl"] .about-card__num {
+  right: auto;
+  left: 1rem;
+}
+
+html[dir="rtl"] .about-card__bullets,
+html[dir="rtl"] .touch-aside__list,
+html[dir="rtl"] .privacy-article ul {
+  padding-left: 0;
+  padding-right: 1.25rem;
+}
+
+html[dir="rtl"] .btn-whatsapp svg,
+html[dir="rtl"] .service-icon svg,
+html[dir="rtl"] .touch-tile__icon svg {
+  transform: none;
+}
+
+html[dir="rtl"] .touch-aside__secondary {
+  text-align: start;
+}
+
+html[dir="rtl"] .header-inner {
+  direction: rtl;
+}
+
+html[dir="ltr"] .header-inner {
+  direction: ltr;
 }
